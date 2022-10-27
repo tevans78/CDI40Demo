@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<server description="new server">
+    <logging traceSpecification="JCDI=debug"></logging>
+
+    <include location="standard.xml"/>
+    
+    <!-- Enable features -->
+    <featureManager>
+        <feature>cdi-4.0</feature>
+        <feature>restfulWS-3.1</feature>
+    </featureManager>
+    
+    <!-- <cdi emptyBeansXmlCDI3Compatibility="true"/> -->
+</server>
