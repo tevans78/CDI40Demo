@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2019, 2021 IBM Corporation and others.
+ * Copyright (c) 2022 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -10,6 +10,7 @@
  *******************************************************************************/
 package io.openliberty.cdi.demo.unversioned;
 
+import jakarta.enterprise.inject.Instance;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
@@ -20,15 +21,17 @@ import jakarta.ws.rs.core.MediaType;
 public class DemoResource {
 
     @Inject
-    RequestScopedBeanA requestScopedBeanA;
+    RequestScopedBeanB requestScopedBeanB;
 
     @Inject
-    UnannotatedClassA unannotatedClassA;
+    Instance<UnannotatedClassB> unannotatedClassB;
 
     @GET
     @Produces(MediaType.TEXT_PLAIN)
     public String get() {
-        return requestScopedBeanA.getMessage() + "\n" + unannotatedClassA.getMessage();
+        return requestScopedBeanB.getMessage() + "\n"
+                + (unannotatedClassB.isUnsatisfied() ? "UnannotatedClassB is not a bean!"
+                        : unannotatedClassB.get().getMessage());
     }
 
 }

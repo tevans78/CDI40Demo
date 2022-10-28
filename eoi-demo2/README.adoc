@@ -1,49 +1,34 @@
 CDI 4.0 Demo
 
-0. Walk through the application modules
-- unversioned
-- empty
-- observer
-- extension
-- bce
-
 1. Build everything
 > mvn clean install
 
 2. Start server
 > mvn liberty:run
 
-3. Observe error caused by unversioned beans.xml
-
-[INFO] [WARNING ] CWOWB1018W: Using an unversioned CDI beans.xml file might lead to unexpected behaviour when using CDI 4.0 or later: [bundleentry://142.fwk-1601892716/META-INF/beans.xml, file:/Users/tevans/Liberty/CDI40Demo/eoi-demo2/unversioned/target/classes/META-INF/beans.xml]
-[INFO] [ERROR   ] CWWKZ0106E: Could not start web application eoi-demo2-ear.
-[INFO] [ERROR   ] CWWKZ0002E: An exception occurred while starting the application eoi-demo2-ear. The exception message was: com.ibm.ws.container.service.state.StateChangeException: org.jboss.weld.exceptions.DeploymentException: WELD-001408: Unsatisfied dependencies for type UnannotatedClassA with qualifiers @Default
-[INFO]   at injection point [BackedAnnotatedField] @Inject io.openliberty.cdi.demo.unversioned.DemoResource.unannotatedClassA
-[INFO]   at io.openliberty.cdi.demo.unversioned.DemoResource.unannotatedClassA(DemoResource.java:0)
-
-4. Change beans.xml to new version
-/unversioned/src/main/resources/META-INF/beans.xml
-
-5. Observe that error has changed to one caused by the empty beans.xml
-
-[INFO] [ERROR   ] CWWKZ0106E: Could not start web application eoi-demo2-ear.
-[INFO] [ERROR   ] CWWKZ0004E: An exception occurred while starting the application eoi-demo2-ear. The exception message was: com.ibm.ws.container.service.state.StateChangeException: org.jboss.weld.exceptions.DeploymentException: WELD-001408: Unsatisfied dependencies for type UnannotatedClassA with qualifiers @Default
-[INFO]   at injection point [BackedAnnotatedField] @Inject io.openliberty.cdi.demo.empty.DemoResource.unannotatedClassA
-[INFO]   at io.openliberty.cdi.demo.empty.DemoResource.unannotatedClassA(DemoResource.java:0)
-
-6. Set the cdi server.xml config
-/eoi-demo2-ear/src/main/liberty/config/server.xml
-
-7. Restart server
-> mvn liberty:run
-
-8. Application started cleanly. Observe the Startup Event message.
-[INFO] Startup event
-
-9. Show that the unversioned, empty and observer wars now work
-http://localhost:9080/unversioned/
-http://localhost:9080/empty/
+3. Look at the observer web module
 http://localhost:9080/observer/
 
-10. Look closer at extension war and the bce. Show that the extension war works.
+4. Look at the extension web module and the BCE
 http://localhost:9080/extension/
+
+5. Look at the unversioned web module and show that it does not currently work properly
+http://localhost:9080/unversioned/
+
+6. Change beans.xml to new version
+/unversioned/src/main/resources/META-INF/beans.xml
+
+7. Look again to see that it now works
+http://localhost:9080/unversioned/
+
+8. Look at the empty web module and show that it does not currently work properly
+http://localhost:9080/empty/
+
+9. Set the cdi server.xml config
+/eoi-demo2-ear/src/main/liberty/config/server.xml
+
+10. Restart server
+> mvn liberty:run
+
+8. Look again and show that it now works
+http://localhost:9080/empty/

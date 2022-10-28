@@ -8,24 +8,15 @@
  * Contributors:
  *     IBM Corporation - initial API and implementation
  *******************************************************************************/
-package io.openliberty.cdi.demo.observer;
+package io.openliberty.cdi.demo.unversioned;
 
-import jakarta.inject.Inject;
-import jakarta.ws.rs.GET;
-import jakarta.ws.rs.Path;
-import jakarta.ws.rs.Produces;
-import jakarta.ws.rs.core.MediaType;
+import jakarta.enterprise.context.RequestScoped;
 
-@Path("/")
-public class DemoResource {
+@RequestScoped
+public class RequestScopedBeanB {
 
-    @Inject
-    ObserverBean observerBean;
-
-    @GET
-    @Produces(MediaType.TEXT_PLAIN)
-    public String get() {
-        return observerBean.getMessage();
+    public String getMessage() {
+        return "Hello from RequestScopedBeanA";
     }
 
 }
