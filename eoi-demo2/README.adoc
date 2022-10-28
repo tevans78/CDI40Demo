@@ -1,34 +1,34 @@
 CDI 4.0 Demo
 
 1. Build everything
-> mvn clean install
+`mvn clean install`
 
 2. Start server
-> mvn liberty:run
+`mvn liberty:run`
 
 3. Look at the observer web module
-http://localhost:9080/observer/
+- http://localhost:9080/observer/
 
 4. Look at the extension web module and the BCE
-http://localhost:9080/extension/
+- http://localhost:9080/extension/
 
 5. Look at the unversioned web module and show that it does not currently work properly
-http://localhost:9080/unversioned/
+- http://localhost:9080/unversioned/
 
 6. Change beans.xml to new version
-/unversioned/src/main/resources/META-INF/beans.xml
+`/unversioned/src/main/resources/META-INF/beans.xml`
 
 7. Look again to see that it now works
-http://localhost:9080/unversioned/
+- http://localhost:9080/unversioned/
 
 8. Look at the empty web module and show that it does not currently work properly
-http://localhost:9080/empty/
+- http://localhost:9080/empty/
 
 9. Set the cdi server.xml config
-/eoi-demo2-ear/src/main/liberty/config/server.xml
+`/eoi-demo2-ear/src/main/liberty/config/server.xml`
 
 10. Restart server
-> mvn liberty:run
+`mvn liberty:run`
 
-8. Look again and show that it now works
-http://localhost:9080/empty/
+11. Look again and show that it now works
+- http://localhost:9080/empty/
